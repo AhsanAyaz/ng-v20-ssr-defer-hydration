@@ -1,1 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
+@import "tailwindcss";
+@plugin "daisyui" {
+  themes: synthwave --default;
+}
+
+html,
+body {
+  @apply bg-base-200 text-base-content;
+}

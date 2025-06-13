@@ -1,0 +1,55 @@
+<h2 class="text-2xl container mx-auto">
+  Products
+  <span class="badge badge-secondary"
+    >{{ productsService.products.value()?.length || 0 }}</span
+  >
+</h2>
+<section class="my-4">
+  <p class="text-sm text-gray-500 my-4">
+    This page demonstrates server-side rendering (SSR) with Angular v20.
+    Products are fetched from the server and displayed here.
+  </p>
+  @if(productsService.products.isLoading()) {
+  <div class="loading loading-spinner loading-md"></div>
+  } @else if (productsService.products.error()) {
+  <div class="alert alert-error">
+    <p>Error loading products: {{ productsService.products.error() }}</p>
+  </div>
+  } @else {
+  <ul
+    class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"
+  >
+    @for (product of productsService.products.value(); track product.id) {
+    <li class="product-item">
+      <div class="card bg-base-100 max-w-96 shadow-sm h-full">
+        <figure>
+          <img
+            src="{{ product.image }}"
+            class="w-full h-48 object-cover"
+            loading="lazy"
+            alt="{{ product.name }}"
+          />
+        </figure>
+        <div class="card-body">
+          <h2 class="card-title">{{product.name}}</h2>
+          <p>{{product.description}}</p>
+          <p class="text-lg font-bold">Price: ${{product.price.toFixed(2)}}</p>
+          <div class="flex justify-end mt-4">
+            <span class="badge badge-secondary"
+              >Category: {{product.category}}</span
+            >
+          </div>
+          <div class="card-actions justify-end">
+            <button class="btn btn-primary">Buy Now</button>
+          </div>
+        </div>
+      </div>
+    </li>
+    } @empty {
+    <div class="alert alert-info">
+      <p>No products available.</p>
+    </div>
+    }
+  </ul>
+  }
+</section>

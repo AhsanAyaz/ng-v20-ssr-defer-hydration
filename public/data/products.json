@@ -1,0 +1,47 @@
+[
+  {
+    "id": "1",
+    "slug": "super-gadget",
+    "name": "Super Gadget",
+    "price": 49.99,
+    "category": "Electronics",
+    "description": "A powerful multi-purpose gadget for all your tech needs.",
+    "image": "/assets/images/super-gadget.png"
+  },
+  {
+    "id": "2",
+    "slug": "ultra-headphones",
+    "name": "Ultra Headphones",
+    "price": 89.99,
+    "category": "Audio",
+    "description": "Noise-cancelling headphones with crystal clear sound.",
+    "image": "/assets/images/ultra-headphones.png"
+  },
+  {
+    "id": "3",
+    "slug": "smart-watch-pro",
+    "name": "Smart Watch Pro",
+    "price": 199.99,
+    "category": "Wearables",
+    "description": "Stay connected and track your health metrics in style.",
+    "image": "/assets/images/smart-watch-pro.png"
+  },
+  {
+    "id": "4",
+    "slug": "eco-sip-bottle",
+    "name": "Eco Sip Bottle",
+    "price": 24.99,
+    "category": "Home & Kitchen",
+    "description": "Reusable stainless steel bottle with temperature control.",
+    "image": "/assets/images/eco-sip-bottle.png"
+  },
+  {
+    "id": "5",
+    "slug": "gaming-keyboard",
+    "name": "Gaming Keyboard",
+    "price": 129.99,
+    "category": "Gaming",
+    "description": "Mechanical keyboard with customizable RGB lighting.",
+    "image": "/assets/images/gaming-keyboard.png"
+  }
+]

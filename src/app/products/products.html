@@ -1,3 +1,28 @@
+<div class="hero bg-base-200 min-h-[calc(100vh-64px)]">
+  <div class="hero-content text-center">
+    <div class="max-w-md">
+      <h1 class="text-5xl font-bold">Hello there</h1>
+      <p class="py-6">
+        This is a simple product store built with Angular v20, demonstrating
+        server-side rendering (SSR) capabilities. Explore our products and enjoy
+        a seamless shopping experience.
+        <br />
+        <br />
+        <strong>Note:</strong> This page is rendered on the server, and products
+        are fetched from the server-side API. The products list will be
+        displayed once the data is available.
+        <br />
+      </p>
+      <button class="btn btn-primary">Get Started</button>
+    </div>
+  </div>
+  <p class="row-start-2">See our products 👇</p>
+</div>
+
+<h1 class="text-4xl font-bold text-center my-8">
+  Welcome to Our Product Store
+</h1>
+
 <h2 class="text-2xl container mx-auto">
   Products
   <span class="badge badge-secondary"
@@ -5,51 +30,13 @@
   >
 </h2>
 <section class="my-4">
-  <p class="text-sm text-gray-500 my-4">
-    This page demonstrates server-side rendering (SSR) with Angular v20.
-    Products are fetched from the server and displayed here.
-  </p>
   @if(productsService.products.isLoading()) {
-  <div class="loading loading-spinner loading-md"></div>
+  <app-loading-indicator />
   } @else if (productsService.products.error()) {
   <div class="alert alert-error">
     <p>Error loading products: {{ productsService.products.error() }}</p>
   </div>
-  } @else {
-  <ul
-    class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"
-  >
-    @for (product of productsService.products.value(); track product.id) {
-    <li class="product-item">
-      <div class="card bg-base-100 max-w-96 shadow-sm h-full">
-        <figure>
-          <img
-            src="{{ product.image }}"
-            class="w-full h-48 object-cover"
-            loading="lazy"
-            alt="{{ product.name }}"
-          />
-        </figure>
-        <div class="card-body">
-          <h2 class="card-title">{{product.name}}</h2>
-          <p>{{product.description}}</p>
-          <p class="text-lg font-bold">Price: ${{product.price.toFixed(2)}}</p>
-          <div class="flex justify-end mt-4">
-            <span class="badge badge-secondary"
-              >Category: {{product.category}}</span
-            >
-          </div>
-          <div class="card-actions justify-end">
-            <button class="btn btn-primary">Buy Now</button>
-          </div>
-        </div>
-      </div>
-    </li>
-    } @empty {
-    <div class="alert alert-info">
-      <p>No products available.</p>
-    </div>
-    }
-  </ul>
+  } @else if (productsService.products.hasValue()) {
+  <app-products-list [products]="productsService.products.value()" />
   }
 </section>

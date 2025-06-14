@@ -1,15 +1,6 @@
 import { httpResource } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-
-export interface Product {
-  id: string;
-  slug: string;
-  name: string;
-  price: number;
-  category: string;
-  description: string;
-  image: string;
-}
+import { Product } from '../interfaces';
 
 @Injectable({
   providedIn: 'root',

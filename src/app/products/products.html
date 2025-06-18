@@ -36,7 +36,13 @@
   <div class="alert alert-error">
     <p>Error loading products: {{ productsService.products.error() }}</p>
   </div>
-  } @else if (productsService.products.hasValue()) {
-  <app-products-list [products]="productsService.products.value()" />
-  }
+  } @else if (productsService.products.hasValue()) { @defer(on timer(3s)) {
+  <app-products-list [products]="productsService.products.value() || []" />
+  } @loading {
+  <app-loading-indicator />
+  } @placeholder { Placeholder } @error {
+  <div class="alert alert-error">
+    <p>Error loading products list component</p>
+  </div>
+  } }
 </section>

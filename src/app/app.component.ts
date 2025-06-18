@@ -4,11 +4,11 @@ import { RouterOutlet } from '@angular/router';
 @Component({
   selector: 'app-root',
   imports: [RouterOutlet],
-  templateUrl: './app.html',
-  styleUrl: './app.css',
+  templateUrl: './app.component.html',
+  styleUrl: './app.component.css',
 })
-export class App implements OnInit {
-  protected title = 'ng-v20-demo-app';
+export class AppComponent implements OnInit {
+  title = 'ng-v19-demo-app';
 
   ngOnInit() {
     console.log('App initialized');

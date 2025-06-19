@@ -23,11 +23,14 @@
   Welcome to Our Product Store
 </h1>
 
-<h2 class="text-2xl container mx-auto">
+<h2 class="text-2xl container mx-auto flex gap-4 items-center">
   Products
   <span class="badge badge-secondary"
     >{{ productsService.products.value()?.length || 0 }}</span
   >
+  <div class="flex-1 flex justify-end">
+    <button #loadBtn class="btn btn-accent">Load products</button>
+  </div>
 </h2>
 <section class="my-4">
   @if(productsService.products.isLoading()) {
@@ -36,7 +39,13 @@
   <div class="alert alert-error">
     <p>Error loading products: {{ productsService.products.error() }}</p>
   </div>
-  } @else if (productsService.products.hasValue()) {
-  <app-products-list [products]="productsService.products.value()" />
-  }
+  } @else { @defer (when productsService.products.hasValue()) {
+  <app-products-list [products]="productsService.products.value() || []" />
+  } @placeholder {
+  <div>Placeholder...</div>
+  } @loading {
+  <app-loading-indicator />
+  } @error {
+  <p class="alert alert-error">Failed to load products component.</p>
+  } }
 </section>

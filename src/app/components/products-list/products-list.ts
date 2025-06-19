@@ -11,11 +11,19 @@ export class ProductsList {
 
   constructor() {
     afterNextRender(() => {
-      console.log(
-        'ProductsList component initialized with products:',
-        this.products()
-      );
+      this.heavyComputation();
     });
+  }
+
+  private heavyComputation() {
+    console.log('Starting heavy computation...');
+    const startTime = performance.now();
+    let result = 0;
+    for (let i = 0; i < 2000000000; i++) {
+      result += Math.sqrt(i);
+    }
+    const endTime = performance.now();
+    console.log(`Heavy computation finished in ${endTime - startTime} ms`);
   }
 
   addToCart(product: Product) {
